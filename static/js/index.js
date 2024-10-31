@@ -1,10 +1,22 @@
 const emailForm = document.getElementById('emailForm');
 const spinner = document.getElementById('spinner');
 
+// 이메일 유효성 검사 함수
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
 emailForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const email = document.getElementById('email').value;
+
+  // 이메일 형식 검증
+  if (!isValidEmail(email)) {
+    alert('Fuck You Bitch');
+    return; // 이메일 형식이 올바르지 않으면 함수 종료
+  }
 
   // 요청 시작 시 스피너 표시
   spinner.style.display = 'block';
